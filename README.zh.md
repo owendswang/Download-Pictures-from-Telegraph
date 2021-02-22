@@ -4,7 +4,7 @@ English Version: [README.md](README.md)
 用于从telegra.ph网站上发布的文章页面上下载图片的Tampermonkey脚本。
 
 ## 下载:
-- 前往[Greasy Fork]()。
+- 前往[Greasy Fork](https://greasyfork.org/zh-CN/scripts/422130-download-pictures-from-telegraph)。
 - 或前往[发布页面](releases)。
 
 ## 使用平台：
@@ -14,7 +14,7 @@ English Version: [README.md](README.md)
 - Windows 7 SP1，Windows 10 20H2 (我测试用的版本)
 
 ## 使用方法:
-从[Greasy Fork]()直接安装。
+从[Greasy Fork](https://greasyfork.org/zh-CN/scripts/422130-download-pictures-from-telegraph)直接安装。
 
 或手动安装：
 1. 下载最新的ZIP包 (从[here](releases)下载).
