@@ -4,7 +4,7 @@
 Download pictures in a post of telegra.ph
 
 ## Download:
-- Go to [Greasy Fork]().
+- Go to [Greasy Fork](https://greasyfork.org/zh-CN/scripts/422130-download-pictures-from-telegraph).
 
 Or
 - Go to [Release Page](releases).
@@ -16,7 +16,7 @@ Or
 - Windows 7 SP1, Windows 10 20H2 (which I tested on)
 
 ## Usage:
-Install from [Greasy Fork]().
+Install from [Greasy Fork](https://greasyfork.org/zh-CN/scripts/422130-download-pictures-from-telegraph).
 
 Or Install manually:
 1. Download the newest release ZIP file (from [here](releases)).
