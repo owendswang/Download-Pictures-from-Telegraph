@@ -1,7 +1,7 @@
 **中文介绍：[README.zh.md](README.zh.md)**
 
 # Download-Pictures-from-Telegraph
-Download pictures in a post of telegra.ph
+A Tampermonkey script to download pictures in a post of telegra.ph
 
 ## Download:
 - Go to [Greasy Fork](https://greasyfork.org/zh-CN/scripts/422130-download-pictures-from-telegraph).
