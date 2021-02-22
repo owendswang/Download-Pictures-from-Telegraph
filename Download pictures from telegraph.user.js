@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name         Download pictures from telegraph
-// @namespace    https://www.owendswang.com/
+// @name:zh-CN   下载Telegraph图片
 // @version      0.1
 // @description  Download pictures from telegra.ph
+// @description:zh-CN 下载“telegra.ph”页面上的图片
 // @author       OWENDSWANG
 // @match        https://telegra.ph/*
 // @exclude      https://telegra.ph/
