@@ -7,6 +7,10 @@
 // @author       OWENDSWANG
 // @match        https://telegra.ph/*
 // @exclude      https://telegra.ph/
+// @icon         https://avatars.githubusercontent.com/u/9076865?s=40&v=4
+// @license      MIT
+// @homepage     https://greasyfork.org/zh-CN/scripts/422130-download-pictures-from-telegraph
+// @supportURL   https://github.com/owendswang/Download-Pictures-from-Telegraph
 // @run-at       document-end
 // @grant        GM_download
 // ==/UserScript==
