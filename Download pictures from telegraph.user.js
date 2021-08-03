@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Download pictures from telegraph
 // @name:zh-CN   下载Telegraph页面图片
-// @version      0.4
+// @version      0.4.1
 // @description  Download pictures from telegra.ph
 // @description:zh-CN 下载“telegra.ph”页面上的图片
 // @author       OWENDSWANG
@@ -25,6 +25,7 @@
             // fileName = fileName.split('?')[0];
             var ext = src.split('.')[src.split('.').length - 1];
             var fileName = imgNameHeader + ' (' + i.toString() + ').' + ext;
+            fileName = fileName.replace(/[<>|\|*|"|\/|\|:|?]/g, '_');
             GM_download(src, fileName);
             i += 1;
         })
