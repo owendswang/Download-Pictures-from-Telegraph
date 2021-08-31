@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Download pictures from telegraph
 // @name:zh-CN   下载Telegraph页面图片
-// @version      0.5
+// @version      0.5.1
 // @description  Download pictures from telegra.ph
 // @description:zh-CN 下载“telegra.ph”页面上的图片
 // @author       OWENDSWANG
@@ -175,7 +175,7 @@
     // 'copy title' button
     var copyTip = document.createElement('small');
     copyTip.textContent = '[Click to copy this title]';
-    copyTip.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    copyTip.style.backgroundColor = 'lightgray';
     copyTip.style.position = 'absolute';
     copyTip.style.right = '0px';
     copyTip.style.bottom = '0px';
@@ -183,11 +183,11 @@
     copyTip.style.fontWeight = 'normal';
     copyTip.style.color = 'gray';
     copyTip.style.lineHeight = '1rem';
-    copyTip.style.padding = '0.2rem';
+    copyTip.style.padding = '0.1rem';
     pageTitle.title = 'Click to copy this title'
     pageTitle.style.position = 'relative';
     pageTitle.addEventListener('mouseover', function(event) {
-        this.style.backgroundColor = 'rgba(0,0,0,0.1)';
+        this.style.backgroundColor = 'lightgray';
         copyTip.style.display = 'block';
         if (pageTitle.getElementsByTagName('small').length > 0) {
             copyTip.textContent = '[Click to copy this title]';
@@ -196,14 +196,16 @@
         }
     });
     pageTitle.addEventListener('mouseout', function(event) {
-        this.style.backgroundColor = 'rgba(0,0,0,0)';
+        this.style.backgroundColor = null;
         copyTip.style.display = 'none';
     });
     pageTitle.addEventListener('mousedown', function(event) {
-        this.style.backgroundColor = 'rgba(0,0,0,0.2)';
+        this.style.backgroundColor = 'darkgray';
+        copyTip.style.backgroundColor = 'darkgray';
     });
     pageTitle.addEventListener('mouseup', function(event) {
-        this.style.backgroundColor = 'rgba(0,0,0,0.1)';
+        this.style.backgroundColor = 'lightgray';
+        copyTip.style.backgroundColor = 'lightgray';
     });
     pageTitle.onclick = function() {
         GM_setClipboard(pageTitle.textContent, 'text');
