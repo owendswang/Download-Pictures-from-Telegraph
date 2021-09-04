@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Download pictures from telegraph
 // @name:zh-CN   下载Telegraph页面图片
-// @version      0.5.1
+// @version      0.5.2
 // @description  Download pictures from telegra.ph
 // @description:zh-CN 下载“telegra.ph”页面上的图片
 // @author       OWENDSWANG
@@ -14,6 +14,7 @@
 // @run-at       document-end
 // @grant        GM_download
 // @grant        GM_setClipboard
+// @namespace https://www.owendswang.com/
 // ==/UserScript==
 
 (function() {
@@ -208,7 +209,7 @@
         copyTip.style.backgroundColor = 'lightgray';
     });
     pageTitle.onclick = function() {
-        GM_setClipboard(pageTitle.textContent, 'text');
+        GM_setClipboard(pageTitle.textContent.replace('[Click to copy this title]', ''), 'text');
         copyTip.textContent = '[Copied]';
     };
 })();
