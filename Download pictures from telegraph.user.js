@@ -209,7 +209,7 @@
         copyTip.style.backgroundColor = 'lightgray';
     });
     pageTitle.onclick = function() {
-        GM_setClipboard(pageTitle.textContent.replace('[Click to copy this title]', ''), 'text');
+        GM_setClipboard(pageTitle.textContent.replace('[Click to copy this title]', '').replace('[Copied]', ''), 'text');
         copyTip.textContent = '[Copied]';
     };
 })();
