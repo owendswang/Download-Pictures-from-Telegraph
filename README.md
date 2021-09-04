@@ -1,6 +1,6 @@
 **中文介绍：[README.zh.md](README.zh.md)**
 
-# Download-Pictures-from-Telegraph
+# Download Pictures from Telegraph
 A Tampermonkey script to download pictures in a post of telegra.ph
 
 ## Download:
