@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Download pictures from telegraph
 // @name:zh-CN   下载Telegraph页面图片
-// @version      0.5.3
+// @version      0.5.4
 // @description  Download pictures from telegra.ph
 // @description:zh-CN 下载“telegra.ph”页面上的图片
 // @author       OWENDSWANG
@@ -66,11 +66,7 @@
         download(imgSrcList);
     };
     var addressList = document.getElementsByTagName('address');
-    for (var j = 0; j < addressList.length; j++) {
-        if (addressList[j].getAttribute("dir") == 'auto') {
-            addressList[j].appendChild(headerButton);
-        }
-    }
+    addressList[0].appendChild(headerButton);
 
     // bottom 'download' button
     var divButtonBottom = document.createElement('div');
