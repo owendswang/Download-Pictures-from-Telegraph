@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Download pictures from telegraph
 // @name:zh-CN   下载Telegraph页面图片
-// @version      0.5.4
+// @version      0.5.5
 // @description  Download pictures from telegra.ph
 // @description:zh-CN 下载“telegra.ph”页面上的图片
 // @author       OWENDSWANG
@@ -13,8 +13,12 @@
 // @supportURL   https://github.com/owendswang/Download-Pictures-from-Telegraph
 // @run-at       document-end
 // @grant        GM_download
+// @grant        GM_xmlhttpRequest
 // @grant        GM_setClipboard
+// @grant        GM_notification
 // @namespace https://www.owendswang.com/
+// @downloadURL https://update.greasyfork.org/scripts/422130/Download%20pictures%20from%20telegraph.user.js
+// @updateURL https://update.greasyfork.org/scripts/422130/Download%20pictures%20from%20telegraph.meta.js
 // ==/UserScript==
 
 (function() {
@@ -23,18 +27,72 @@
     var tlEditor = document.getElementById('_tl_editor');
     var pageTitle = document.getElementsByTagName('h1')[0];
 
+    function saveAs(blob, name) {
+        const link = document.createElement("a");
+        link.style.display = "none";
+        link.href = URL.createObjectURL(blob);
+        link.download = name;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        const timeout = setTimeout(() => {
+            URL.revokeObjectURL(link.href);
+            link.parentNode.removeChild(link);
+        }, 1000);
+    }
+
+    async function downloadSingle(url, fileName) {
+        try {
+            const res = await fetch(url, { browsingTopics: false });
+            if (!res.ok) {
+                throw new Error(`Response status: ${res.status}`);
+            }
+            const blob = await res.blob();
+            saveAs(blob, fileName);
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
     // 'download' button
     function download(imgSrcList) {
+        // console.log(imgSrcList);
         var i = 1;
         var padLength = imgSrcList.length.toString().length;
-        var title = pageTitle.textContent.replace('[Click to copy this title]', '').replace('[Copied]', '');
+        var title = pageTitle.textContent.replace('[Click to copy this title]', '').replace('[Copied]', '').replace(/ - Page \d+$/, '');
         imgSrcList.forEach(function(src) {
             // var fileName = src.split('/')[src.split('/').length - 1];
             // fileName = fileName.split('?')[0];
-            var ext = src.split('.')[src.split('.').length - 1];
+            var ext = src.split('.').length > 1 ? src.split('.')[src.split('.').length - 1] : 'jpg';
             var fileName = title + ' (' + i.toString().padStart(padLength, '0') + ').' + ext;
             fileName = fileName.replace(/[<>|\|*|"|\/|\|:|?]/g, '_');
-            GM_download(src, fileName);
+            // 1. GM_download wouldn't work with urls without file extension
+            // GM_download({
+            //     url: src,
+            //     name: fileName,
+            //     onerror(error) {
+            //         console.log(error);
+            //     }
+            // });
+            // 2. fetch wouldn't work with cross-site request
+            // downloadSingle(src, fileName);
+            // 3. GM_xmlhttpRequest works fine
+            GM_xmlhttpRequest({
+                method: 'GET',
+                url: src,
+                responseType: 'blob',
+                // headers: {},
+                onload({ status, response }) {
+                    saveAs(response, fileName);
+                },
+                onerror(error) {
+                    console.log(error);
+                    GM_notification({
+                        text: error.error,
+                        title: 'Download Error',
+                    });
+                }
+            });
             i += 1;
         })
     }
@@ -206,7 +264,7 @@
         copyTip.style.backgroundColor = 'lightgray';
     });
     pageTitle.onclick = function() {
-        GM_setClipboard(pageTitle.textContent.replace('[Click to copy this title]', '').replace('[Copied]', ''), 'text');
+        GM_setClipboard(pageTitle.textContent.replace('[Click to copy this title]', '').replace('[Copied]', '').replace(/ - Page \d+$/, ''), 'text');
         copyTip.textContent = '[Copied]';
     };
 })();
